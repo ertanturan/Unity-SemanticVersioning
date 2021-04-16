@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
-public class Versioning : MonoBehaviour
+public class AutoVersioner : MonoBehaviour
 {
     [SerializeField] private Text _versionText;
+
+    public Text VersionText
+    {
+        get => _versionText;
+    }
 
     private VersionScriptableObject _versionData;
 
@@ -71,6 +76,13 @@ public class Versioning : MonoBehaviour
 
     public void SetVersionText()
     {
+        
+        if (VersionText==null)
+        {
+            Debug.LogWarning("Version text cannot be null in `AutoVersioner` class..");
+            return;
+        }
+
         _versionText.text = _versionData.Major + "." + _versionData.Minor + "."
                             + _versionData.Patch + "." +
                             _versionData.Prerelease + ".+" + _versionData.Build;

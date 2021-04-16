@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.0.0.f.+13
+  m_Text: 0.0.0.f.+4
 --- !u!222 &362790012
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 1430161261}
   - component: {fileID: 1430161260}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Auto Versioner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _versionText: {fileID: 362790011}
-  _releaseType: 1
+  _releaseType: 0
 --- !u!4 &1430161261
 Transform:
   m_ObjectHideFlags: 0
