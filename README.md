@@ -7,3 +7,10 @@ Semantic versioning system within the Unity environment.
 3. Pre-release enumeration has its own commented explanations.
 ## Notes 
 1. Keep that in mind that only developers/engineers can change major, minor, patch or pre-release versions. The only automation is in build number. But, when you change a versioning sequence manually versioning system responds to it downwards . How ? When you change superior sequence, minor sequence resets. For example, if you set patch version manually then pre-release and build numbers resets.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+# ENJOY !
