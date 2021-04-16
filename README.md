@@ -12,6 +12,7 @@ Semantic versioning system within the Unity environment.
 1. Go to [release](https://github.com/ertanturan/Unity-SemanticVersioning/releases) page.
 2. Download the lates release of the package.
 3. Import it to your unity project.
+4. You're set.
 
 ## Usage
 
@@ -20,12 +21,20 @@ Semantic versioning system within the Unity environment.
 2. Add the prefab to your scene.
 3. Click on the added prefab in your scene hierarchy.
 4. Set a textbox for auto versioner to show the current version on UI.
+5. You're set.
+
 
 ### Increasing version number manually
 1. Click to `AutoVersioner` in your scene.
-2. Choose the type of release 
+2. Choose the type of release ( Visit ReleaseType enumeration for detailed information)
 
 ![Release type selection](https://i.ibb.co/YTWsYz7/version-Type.png)
+
+3. Click on editor buttons of which type you would like to make a release of.
+
+![Release type selection](https://i.ibb.co/gvZqC2v/buttons.png)
+
+4. You're set.
 
 ## Notes 
 1. Keep that in mind that only developers/engineers can change major, minor, patch or pre-release versions. The only automation is in build number. But, when you change a versioning sequence manually versioning system responds to it downwards . How ? When you change superior sequence, minor sequence resets. For example, if you set patch version manually then pre-release and build numbers resets.
