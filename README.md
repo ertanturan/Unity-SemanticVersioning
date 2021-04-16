@@ -13,7 +13,13 @@ Semantic versioning system within the Unity environment.
 2. Download the lates release of the package.
 3. Import it to your unity project.
 
+## Usage
 
+1. Head to `Assets/CustomTools/SemanticVersioning/Prefab`
+2. Add the prefab to your scene.
+3. Click on the added prefab in your scene hierarchy.
+4. Set a textbox for auto versioner to show the current version on UI.
+5. That's it !
 
 ## Notes 
 1. Keep that in mind that only developers/engineers can change major, minor, patch or pre-release versions. The only automation is in build number. But, when you change a versioning sequence manually versioning system responds to it downwards . How ? When you change superior sequence, minor sequence resets. For example, if you set patch version manually then pre-release and build numbers resets.
