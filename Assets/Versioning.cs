@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,6 +74,8 @@ public class Versioning : MonoBehaviour
         _versionText.text = _versionData.Major + "." + _versionData.Minor + "."
                             + _versionData.Patch + "." +
                             _versionData.Prerelease + ".+" + _versionData.Build;
+        EditorUtility.SetDirty(_versionData);
+       
     }
 
 }
