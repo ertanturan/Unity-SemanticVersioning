@@ -28,7 +28,7 @@ Semantic versioning system within the Unity environment.
 1. Click to `AutoVersioner` in your scene.
 2. Choose the type of release ( Visit ReleaseType enumeration for detailed information)
 
-![Release type selection](https://i.ibb.co/YTWsYz7/version-Type.png)
+![Release type selection](https://github.com/ertanturan/Unity-SemanticVersioning/blob/main/Assets/Instructions/types.png)
 
 3. Click on editor buttons of which type you would like to make a release of.
 
