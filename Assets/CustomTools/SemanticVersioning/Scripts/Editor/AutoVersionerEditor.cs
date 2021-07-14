@@ -44,6 +44,8 @@ public class AutoVersionerEditor : Editor
         if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetMajorUpdate();
+            PressedAnyButton();
+
         }
 
         EditorGUILayout.EndHorizontal();
@@ -55,6 +57,8 @@ public class AutoVersionerEditor : Editor
         if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetMinorUpdate();
+            PressedAnyButton();
+
         }
 
         EditorGUILayout.EndHorizontal();
@@ -66,6 +70,8 @@ public class AutoVersionerEditor : Editor
         if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetPatchUpdate();
+            PressedAnyButton();
+
         }
 
         EditorGUILayout.EndHorizontal();
@@ -88,6 +94,8 @@ public class AutoVersionerEditor : Editor
         if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetBuild();
+            PressedAnyButton();
+
         }
 
         EditorGUILayout.EndHorizontal();
@@ -97,6 +105,7 @@ public class AutoVersionerEditor : Editor
         {
             autoVersioner.ResetVersionData();
             autoVersioner._releaseType = ReleaseType.None;
+            PressedAnyButton();
         }
 
         EditorGUILayout.Space();
@@ -118,6 +127,20 @@ public class AutoVersionerEditor : Editor
 
         autoVersioner.GetVersioner();
         autoVersioner.SetVersionText();
+
+        
+    }
+
+    private void PressedAnyButton()
+    {
+        AutoVersioner autoVersioner = (AutoVersioner) target;
+
+        if (PrefabUtility.IsAnyPrefabInstanceRoot(autoVersioner.gameObject))
+        {
+    
+            PrefabUtility.ApplyPrefabInstance(autoVersioner.gameObject,InteractionMode.AutomatedAction);
+            
+        }
     }
 
     #endregion
