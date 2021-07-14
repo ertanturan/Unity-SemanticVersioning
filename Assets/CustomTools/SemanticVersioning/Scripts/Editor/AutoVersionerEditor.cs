@@ -20,12 +20,10 @@ public class AutoVersionerEditor : Editor
         SetVersion();
     }
 
-
     private void OnSceneGUI()
     {
         SetVersion();
     }
-
 
     public override void OnInspectorGUI()
     {
@@ -45,11 +43,9 @@ public class AutoVersionerEditor : Editor
         {
             autoVersioner.SetMajorUpdate();
             PressedAnyButton();
-
         }
 
         EditorGUILayout.EndHorizontal();
-
 
         EditorGUILayout.BeginHorizontal();
 
@@ -58,11 +54,9 @@ public class AutoVersionerEditor : Editor
         {
             autoVersioner.SetMinorUpdate();
             PressedAnyButton();
-
         }
 
         EditorGUILayout.EndHorizontal();
-
 
         EditorGUILayout.BeginHorizontal();
 
@@ -71,35 +65,27 @@ public class AutoVersionerEditor : Editor
         {
             autoVersioner.SetPatchUpdate();
             PressedAnyButton();
-
         }
 
         EditorGUILayout.EndHorizontal();
 
-
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField($"Pre-release Version Info : {autoVersioner.VersionData.Prerelease}");
 
-
         autoVersioner.SetPrerelease();
-
 
         EditorGUILayout.EndHorizontal();
 
-
         EditorGUILayout.BeginHorizontal();
-
 
         EditorGUILayout.LabelField($"Build Version Info : {autoVersioner.VersionData.Build}");
         if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetBuild();
             PressedAnyButton();
-
         }
 
         EditorGUILayout.EndHorizontal();
-
 
         if (GUILayout.Button(" RESET"))
         {
@@ -127,8 +113,6 @@ public class AutoVersionerEditor : Editor
 
         autoVersioner.GetVersioner();
         autoVersioner.SetVersionText();
-
-        
     }
 
     private void PressedAnyButton()
@@ -137,9 +121,7 @@ public class AutoVersionerEditor : Editor
 
         if (PrefabUtility.IsAnyPrefabInstanceRoot(autoVersioner.gameObject))
         {
-    
-            PrefabUtility.ApplyPrefabInstance(autoVersioner.gameObject,InteractionMode.AutomatedAction);
-            
+            PrefabUtility.ApplyPrefabInstance(autoVersioner.gameObject, InteractionMode.AutomatedAction);
         }
     }
 

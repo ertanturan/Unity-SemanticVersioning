@@ -43,6 +43,13 @@ public class AutoVersioner : MonoBehaviour
         }
 
         SetVersionText();
+
+#if UNITY_EDITOR
+        if (PrefabUtility.IsAnyPrefabInstanceRoot(gameObject))
+        {
+            PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.AutomatedAction);
+        }
+#endif
     }
 
     #endregion
@@ -118,7 +125,7 @@ public class AutoVersioner : MonoBehaviour
         SetScriptableObjectDirty();
     }
 
-    public void SetScriptableObjectDirty()
+    private void SetScriptableObjectDirty()
     {
 #if UNITY_EDITOR
         EditorUtility.SetDirty(_versionData);
