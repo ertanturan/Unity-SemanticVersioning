@@ -4,11 +4,11 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-// [CreateAssetMenu(fileName = "Versioner",menuName = "CustomTools/Create New Versioner")]
+
 public class VersionScriptableObject : ScriptableObject
 {
-    
     #region Fields And Properties
+
     [SerializeField] private int _major;
 
     public int Major
@@ -38,10 +38,9 @@ public class VersionScriptableObject : ScriptableObject
     [SerializeField] private int _build;
 
     public int Build => _build;
-    
 
     #endregion
-    
+
     #region Custom Methods
 
     public void SetMajorUpdate()
@@ -51,30 +50,39 @@ public class VersionScriptableObject : ScriptableObject
         _build = 0;
         _patch = 0;
     }
-    
+
     public void SetMinorUpdate()
     {
         _minor++;
         _build = 0;
         _patch = 0;
     }
-    
+
     public void SetPatchUpdate()
     {
         _patch++;
         _build = 0;
     }
-    
+
     public void SetPrerelease(ReleaseType type)
     {
         _prerelease = type;
     }
-    
+
     public void SetBuild()
     {
         _build++;
     }
 
+
+    public void ResetScriptableObject()
+    {
+        _major = 0;
+        _minor = 0;
+        _build = 0;
+        _patch = 0;
+        _prerelease = ReleaseType.None;
+    }
+
     #endregion
-        
 }
