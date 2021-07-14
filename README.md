@@ -32,9 +32,13 @@ Semantic versioning system within the Unity environment.
 
 3. Click on editor buttons of which type you would like to make a release of.
 
-![Release type selection](https://i.ibb.co/gvZqC2v/buttons.png)
+![Release type selection](https://github.com/ertanturan/Unity-SemanticVersioning/blob/main/Assets/Instructions/buillds.png)
 
-4. You're set.
+4. Resetting your version data
+
+![Reset](https://github.com/ertanturan/Unity-SemanticVersioning/blob/main/Assets/Instructions/reset.png)
+
+5. You're set.
 
 ## Notes 
 1. Keep that in mind that only developers/engineers can change major, minor, patch or pre-release versions. The only automation is in build number. But, when you change a versioning sequence manually, versioning system responds to it downwards . How ? When you change superior sequence, minor sequence resets. For example, if you set patch version manually then pre-release and build numbers resets.
