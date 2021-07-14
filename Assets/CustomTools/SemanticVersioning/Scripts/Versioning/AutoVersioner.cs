@@ -7,6 +7,8 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class AutoVersioner : MonoBehaviour
 {
+    #region Fields And Properties
+
     private Text _versionText;
 
     public Text VersionText
@@ -25,6 +27,9 @@ public class AutoVersioner : MonoBehaviour
 
     public ReleaseType _releaseType;
 
+    #endregion
+
+    #region Builtin Methods
 
     private void Start()
     {
@@ -34,6 +39,10 @@ public class AutoVersioner : MonoBehaviour
         SetVersionText();
         _versionText = GetComponent<Text>();
     }
+
+    #endregion
+
+    #region Custom Methods
 
     public void SetMajorUpdate()
     {
@@ -112,4 +121,6 @@ public class AutoVersioner : MonoBehaviour
         _versionData.ResetScriptableObject();
         SetVersionText();
     }
+
+    #endregion
 }
