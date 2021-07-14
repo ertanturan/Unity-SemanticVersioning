@@ -31,7 +31,6 @@ public class AutoVersioner : MonoBehaviour
         _versionData.SetBuild();
 
         SetVersionText();
-        
     }
 
     public void SetMajorUpdate()
@@ -76,18 +75,15 @@ public class AutoVersioner : MonoBehaviour
 
     public void SetVersionText()
     {
-        
-        if (VersionText==null)
+        if (VersionText == null)
         {
             Debug.LogWarning("Version text cannot be null in `AutoVersioner` class..");
             return;
         }
 
         _versionText.text = _versionData.Major + "." + _versionData.Minor + "."
-                            + _versionData.Patch + "." +
-                            _versionData.Prerelease + ".+" + _versionData.Build;
+                            + _versionData.Patch + "." + _versionData.Build 
+                            + _versionData.Prerelease;
         EditorUtility.SetDirty(_versionData);
-       
     }
-
 }

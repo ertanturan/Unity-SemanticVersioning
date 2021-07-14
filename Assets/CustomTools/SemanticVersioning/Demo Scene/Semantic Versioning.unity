@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.0.0.f.+5
+  m_Text: 1.1.2.0nightly
 --- !u!222 &362790012
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -550,6 +550,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Auto Versioner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663190622464397676, guid: 75eb583f2ec80d7478808ac2e41198f2,
+        type: 3}
+      propertyPath: _releaseType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2663190622464397676, guid: 75eb583f2ec80d7478808ac2e41198f2,
         type: 3}
