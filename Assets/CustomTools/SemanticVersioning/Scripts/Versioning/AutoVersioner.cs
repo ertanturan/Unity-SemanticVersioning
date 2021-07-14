@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,8 +37,12 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
         _versionData.SetBuild();
 
+        if (_versionText == null)
+        {
+            _versionText = GetComponent<Text>();
+        }
+
         SetVersionText();
-        _versionText = GetComponent<Text>();
     }
 
     #endregion
@@ -98,15 +103,26 @@ public class AutoVersioner : MonoBehaviour
         }
 
         string preRelease = _versionData.Prerelease == ReleaseType.None ? "" : _versionData.Prerelease.ToString();
-        _versionText.text = _versionData.Major + "." + _versionData.Minor + "."
-                            + _versionData.Patch + "." + _versionData.Build
-                            + preRelease;
+        StringBuilder versionSb = new StringBuilder();
+
+        versionSb.Append(_versionData.Major);
+        versionSb.Append(".");
+        versionSb.Append(_versionData.Minor);
+        versionSb.Append(".");
+        versionSb.Append(_versionData.Patch);
+        versionSb.Append(".");
+        versionSb.Append(_versionData.Build);
+        versionSb.Append(preRelease);
+
+        _versionText.text = versionSb.ToString();
         SetScriptableObjectDirty();
     }
 
     public void SetScriptableObjectDirty()
     {
+#if UNITY_EDITOR
         EditorUtility.SetDirty(_versionData);
+#endif
     }
 
 #if UNITY_EDITOR
