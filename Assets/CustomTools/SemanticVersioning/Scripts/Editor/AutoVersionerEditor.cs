@@ -8,6 +8,8 @@ using UnityEngine.UI;
 [CustomEditor(typeof(AutoVersioner))]
 public class AutoVersionerEditor : Editor
 {
+    #region Builtin Methods
+
     private void OnPreSceneGUI()
     {
         SetVersion();
@@ -106,6 +108,10 @@ public class AutoVersionerEditor : Editor
         SetVersion();
     }
 
+    #endregion
+
+    #region Custom Methods
+
     private void SetVersion()
     {
         AutoVersioner autoVersioner = (AutoVersioner) target;
@@ -113,4 +119,6 @@ public class AutoVersionerEditor : Editor
         autoVersioner.GetVersioner();
         autoVersioner.SetVersionText();
     }
+
+    #endregion
 }

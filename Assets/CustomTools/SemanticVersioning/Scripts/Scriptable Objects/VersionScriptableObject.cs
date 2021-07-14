@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-// [CreateAssetMenu(fileName = "Versioner",menuName = "CustomTools/Create New Versioner")]
+
 public class VersionScriptableObject : ScriptableObject
 {
     #region Fields And Properties
