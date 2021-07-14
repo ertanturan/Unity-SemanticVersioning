@@ -31,6 +31,7 @@ public class AutoVersioner : MonoBehaviour
         _versionData.SetBuild();
 
         SetVersionText();
+        _versionText = GetComponent<Text>();
     }
 
     public void SetMajorUpdate()
@@ -81,9 +82,18 @@ public class AutoVersioner : MonoBehaviour
             return;
         }
 
+        string preRelease = _versionData.Prerelease == ReleaseType.None ? "" : _versionData.Prerelease.ToString();
         _versionText.text = _versionData.Major + "." + _versionData.Minor + "."
-                            + _versionData.Patch + "." + _versionData.Build 
-                            + _versionData.Prerelease;
+                            + _versionData.Patch + "." + _versionData.Build
+                            + preRelease;
+
         EditorUtility.SetDirty(_versionData);
     }
+
+#if UNITY_EDITOR
+    public void SetVersionTextComponent()
+    {
+        _versionText = GetComponent<Text>();
+    }
+#endif
 }

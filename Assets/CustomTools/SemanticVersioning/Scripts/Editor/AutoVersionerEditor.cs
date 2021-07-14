@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CustomEditor(typeof(AutoVersioner))]
 public class AutoVersionerEditor : Editor
@@ -23,52 +24,71 @@ public class AutoVersionerEditor : Editor
         SetVersion();
     }
 
+    
+   
+
     public override void OnInspectorGUI()
     {
-        
+
         base.OnInspectorGUI();
         
         AutoVersioner autoVersioner = (AutoVersioner) target;
 
-       
+        autoVersioner.SetVersionTextComponent();
 
         EditorGUILayout.Space();
         autoVersioner.GetVersioner();
 
+        EditorGUILayout.BeginHorizontal();
+
         EditorGUILayout.LabelField($"Major Version Info : {autoVersioner.VersionData.Major}");
-        if (GUILayout.Button("Set for Major Update"))
+        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
         {
             autoVersioner.SetMajorUpdate();
-            autoVersioner.SetVersionText();
         }
+        EditorGUILayout.EndHorizontal();
+
+        
+        EditorGUILayout.BeginHorizontal();
 
         EditorGUILayout.LabelField($"Minor Version Info : {autoVersioner.VersionData.Minor}");
-        if (GUILayout.Button("Set for Minor Update"))
+        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
         {
             autoVersioner.SetMinorUpdate();
-            autoVersioner.SetVersionText();
         }
+        EditorGUILayout.EndHorizontal();
+
+        
+        EditorGUILayout.BeginHorizontal();
 
         EditorGUILayout.LabelField($"Patch Version Info : {autoVersioner.VersionData.Patch}");
-        if (GUILayout.Button("Set for Patch Update"))
+        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
         {
             autoVersioner.SetPatchUpdate();
-            autoVersioner.SetVersionText();
         }
 
+        EditorGUILayout.EndHorizontal();
+
+        
+        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField($"Pre-release Version Info : {autoVersioner.VersionData.Prerelease}");
-        if (GUILayout.Button("Set for Pre-release Update"))
-        {
+        
+        
             autoVersioner.SetPrerelease();
-            autoVersioner.SetVersionText();
-        }
+        
+        
+        EditorGUILayout.EndHorizontal();
 
+        
+        EditorGUILayout.BeginHorizontal();
+
+        
         EditorGUILayout.LabelField($"Build Version Info : {autoVersioner.VersionData.Build}");
-        if (GUILayout.Button("Set for Build Update"))
+        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
         {
             autoVersioner.SetBuild();
-            autoVersioner.SetVersionText();
         }
+        EditorGUILayout.EndHorizontal();
 
         autoVersioner.SetVersionText();
     }
