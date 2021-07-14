@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CustomEditor(typeof(AutoVersioner))]
 public class AutoVersionerEditor : Editor
 {
+    #region Builtin Methods
+
     private void OnPreSceneGUI()
     {
         SetVersion();
@@ -17,7 +20,6 @@ public class AutoVersionerEditor : Editor
         SetVersion();
     }
 
-
     private void OnSceneGUI()
     {
         SetVersion();
@@ -25,58 +27,85 @@ public class AutoVersionerEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        
         base.OnInspectorGUI();
-        
+
         AutoVersioner autoVersioner = (AutoVersioner) target;
 
-       
+        autoVersioner.SetVersionTextComponent();
 
         EditorGUILayout.Space();
         autoVersioner.GetVersioner();
 
-        EditorGUILayout.LabelField(string.Format("Major Version Info : {0}", autoVersioner.VersionData.Major));
-        if (GUILayout.Button("Set for Major Update"))
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField($"Major Version Info : {autoVersioner.VersionData.Major}");
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetMajorUpdate();
-            autoVersioner.SetVersionText();
+            PressedAnyButton();
         }
 
-        EditorGUILayout.LabelField(string.Format("Minor Version Info : {0}", autoVersioner.VersionData.Minor));
-        if (GUILayout.Button("Set for Minor Update"))
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField($"Minor Version Info : {autoVersioner.VersionData.Minor}");
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetMinorUpdate();
-            autoVersioner.SetVersionText();
+            PressedAnyButton();
         }
 
-        EditorGUILayout.LabelField(string.Format("Patch Version Info : {0}", autoVersioner.VersionData.Patch));
-        if (GUILayout.Button("Set for Patch Update"))
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField($"Patch Version Info : {autoVersioner.VersionData.Patch}");
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetPatchUpdate();
-            autoVersioner.SetVersionText();
+            PressedAnyButton();
         }
 
-        EditorGUILayout.LabelField(string.Format("Pre-release Version Info : {0}", autoVersioner.VersionData.Prerelease));
-        if (GUILayout.Button("Set for Pre-release Update"))
-        {
-            autoVersioner.SetPrerelease();
-            autoVersioner.SetVersionText();
-        }
+        EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.LabelField(string.Format("Build Version Info : {0}", autoVersioner.VersionData.Build));
-        if (GUILayout.Button("Set for Build Update"))
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField($"Pre-release Version Info : {autoVersioner.VersionData.Prerelease}");
+
+        autoVersioner.SetPrerelease();
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField($"Build Version Info : {autoVersioner.VersionData.Build}");
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetBuild();
-            autoVersioner.SetVersionText();
+            PressedAnyButton();
         }
 
+        EditorGUILayout.EndHorizontal();
+
+        if (GUILayout.Button(" RESET"))
+        {
+            autoVersioner.ResetVersionData();
+            autoVersioner._releaseType = ReleaseType.None;
+            PressedAnyButton();
+        }
+
+        EditorGUILayout.Space();
         autoVersioner.SetVersionText();
     }
-    
+
     private void OnValidate()
     {
         SetVersion();
     }
+
+    #endregion
+
+    #region Custom Methods
 
     private void SetVersion()
     {
@@ -85,5 +114,16 @@ public class AutoVersionerEditor : Editor
         autoVersioner.GetVersioner();
         autoVersioner.SetVersionText();
     }
-    
+
+    private void PressedAnyButton()
+    {
+        AutoVersioner autoVersioner = (AutoVersioner) target;
+
+        if (PrefabUtility.IsAnyPrefabInstanceRoot(autoVersioner.gameObject))
+        {
+            PrefabUtility.ApplyPrefabInstance(autoVersioner.gameObject, InteractionMode.AutomatedAction);
+        }
+    }
+
+    #endregion
 }

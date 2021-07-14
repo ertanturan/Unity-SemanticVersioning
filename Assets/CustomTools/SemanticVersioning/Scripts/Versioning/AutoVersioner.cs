@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Text))]
 [ExecuteInEditMode]
 public class AutoVersioner : MonoBehaviour
 {
-    [SerializeField] private Text _versionText;
+    #region Fields And Properties
+
+    private Text _versionText;
 
     public Text VersionText
     {
@@ -24,21 +28,40 @@ public class AutoVersioner : MonoBehaviour
 
     public ReleaseType _releaseType;
 
+    #endregion
+
+    #region Builtin Methods
 
     private void Start()
     {
         GetVersioner();
         _versionData.SetBuild();
 
+        if (_versionText == null)
+        {
+            _versionText = GetComponent<Text>();
+        }
+
         SetVersionText();
-        
+
+#if UNITY_EDITOR
+        if (PrefabUtility.IsAnyPrefabInstanceRoot(gameObject))
+        {
+            PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.AutomatedAction);
+        }
+#endif
     }
+
+    #endregion
+
+    #region Custom Methods
 
     public void SetMajorUpdate()
     {
         GetVersioner();
 
         _versionData.SetMajorUpdate();
+        SetVersionText();
     }
 
     public void SetMinorUpdate()
@@ -46,6 +69,7 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
 
         _versionData.SetMinorUpdate();
+        SetVersionText();
     }
 
     public void SetPatchUpdate()
@@ -53,6 +77,7 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
 
         _versionData.SetPatchUpdate();
+        SetVersionText();
     }
 
     public void SetPrerelease()
@@ -60,12 +85,14 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
 
         _versionData.SetPrerelease(_releaseType);
+        SetVersionText();
     }
 
     public void SetBuild()
     {
         GetVersioner();
         _versionData.SetBuild();
+        SetVersionText();
     }
 
     public void GetVersioner()
@@ -76,18 +103,47 @@ public class AutoVersioner : MonoBehaviour
 
     public void SetVersionText()
     {
-        
-        if (VersionText==null)
+        if (VersionText == null)
         {
             Debug.LogWarning("Version text cannot be null in `AutoVersioner` class..");
             return;
         }
 
-        _versionText.text = _versionData.Major + "." + _versionData.Minor + "."
-                            + _versionData.Patch + "." +
-                            _versionData.Prerelease + ".+" + _versionData.Build;
-        EditorUtility.SetDirty(_versionData);
-       
+        string preRelease = _versionData.Prerelease == ReleaseType.None ? "" : _versionData.Prerelease.ToString();
+        StringBuilder versionSb = new StringBuilder();
+
+        versionSb.Append(_versionData.Major);
+        versionSb.Append(".");
+        versionSb.Append(_versionData.Minor);
+        versionSb.Append(".");
+        versionSb.Append(_versionData.Patch);
+        versionSb.Append(".");
+        versionSb.Append(_versionData.Build);
+        versionSb.Append(preRelease);
+
+        _versionText.text = versionSb.ToString();
+        SetScriptableObjectDirty();
     }
 
+    private void SetScriptableObjectDirty()
+    {
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(_versionData);
+#endif
+    }
+
+#if UNITY_EDITOR
+    public void SetVersionTextComponent()
+    {
+        _versionText = GetComponent<Text>();
+    }
+#endif
+
+    public void ResetVersionData()
+    {
+        _versionData.ResetScriptableObject();
+        SetVersionText();
+    }
+
+    #endregion
 }
