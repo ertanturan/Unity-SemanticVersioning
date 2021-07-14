@@ -11,17 +11,21 @@ public class AutoVersionerEditor : Editor
     private void OnPreSceneGUI()
     {
         SetVersion();
+        
+
     }
 
     private void OnSceneDrag(SceneView sceneView, int index)
     {
         SetVersion();
+
     }
 
 
     private void OnSceneGUI()
     {
         SetVersion();
+        
     }
 
     
@@ -91,11 +95,16 @@ public class AutoVersionerEditor : Editor
         EditorGUILayout.EndHorizontal();
 
         autoVersioner.SetVersionText();
+    
+        // autoVersioner.SetScriptableObjectDirty();
+        
+        
     }
     
     private void OnValidate()
     {
         SetVersion();
+
     }
 
     private void SetVersion()

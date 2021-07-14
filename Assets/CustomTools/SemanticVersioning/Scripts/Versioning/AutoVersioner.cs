@@ -86,7 +86,11 @@ public class AutoVersioner : MonoBehaviour
         _versionText.text = _versionData.Major + "." + _versionData.Minor + "."
                             + _versionData.Patch + "." + _versionData.Build
                             + preRelease;
+        SetScriptableObjectDirty();
+    }
 
+    public void SetScriptableObjectDirty()
+    {
         EditorUtility.SetDirty(_versionData);
     }
 
