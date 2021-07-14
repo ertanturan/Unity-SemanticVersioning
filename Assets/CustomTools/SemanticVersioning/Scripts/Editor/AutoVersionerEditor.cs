@@ -11,31 +11,24 @@ public class AutoVersionerEditor : Editor
     private void OnPreSceneGUI()
     {
         SetVersion();
-        
-
     }
 
     private void OnSceneDrag(SceneView sceneView, int index)
     {
         SetVersion();
-
     }
 
 
     private void OnSceneGUI()
     {
         SetVersion();
-        
     }
 
-    
-   
 
     public override void OnInspectorGUI()
     {
-
         base.OnInspectorGUI();
-        
+
         AutoVersioner autoVersioner = (AutoVersioner) target;
 
         autoVersioner.SetVersionTextComponent();
@@ -46,65 +39,71 @@ public class AutoVersionerEditor : Editor
         EditorGUILayout.BeginHorizontal();
 
         EditorGUILayout.LabelField($"Major Version Info : {autoVersioner.VersionData.Major}");
-        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetMajorUpdate();
         }
+
         EditorGUILayout.EndHorizontal();
 
-        
+
         EditorGUILayout.BeginHorizontal();
 
         EditorGUILayout.LabelField($"Minor Version Info : {autoVersioner.VersionData.Minor}");
-        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetMinorUpdate();
         }
+
         EditorGUILayout.EndHorizontal();
 
-        
+
         EditorGUILayout.BeginHorizontal();
 
         EditorGUILayout.LabelField($"Patch Version Info : {autoVersioner.VersionData.Patch}");
-        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetPatchUpdate();
         }
 
         EditorGUILayout.EndHorizontal();
 
-        
+
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField($"Pre-release Version Info : {autoVersioner.VersionData.Prerelease}");
-        
-        
-            autoVersioner.SetPrerelease();
-        
-        
+
+
+        autoVersioner.SetPrerelease();
+
+
         EditorGUILayout.EndHorizontal();
 
-        
+
         EditorGUILayout.BeginHorizontal();
 
-        
+
         EditorGUILayout.LabelField($"Build Version Info : {autoVersioner.VersionData.Build}");
-        if (GUILayout.Button("+",GUILayout.Width(25),GUILayout.Height(25)))
+        if (GUILayout.Button("+", GUILayout.Width(25), GUILayout.Height(25)))
         {
             autoVersioner.SetBuild();
         }
+
         EditorGUILayout.EndHorizontal();
 
+
+        if (GUILayout.Button(" RESET"))
+        {
+            autoVersioner.ResetVersionData();
+            autoVersioner._releaseType = ReleaseType.None;
+        }
+
+        EditorGUILayout.Space();
         autoVersioner.SetVersionText();
-    
-        // autoVersioner.SetScriptableObjectDirty();
-        
-        
     }
-    
+
     private void OnValidate()
     {
         SetVersion();
-
     }
 
     private void SetVersion()
@@ -114,5 +113,4 @@ public class AutoVersionerEditor : Editor
         autoVersioner.GetVersioner();
         autoVersioner.SetVersionText();
     }
-    
 }

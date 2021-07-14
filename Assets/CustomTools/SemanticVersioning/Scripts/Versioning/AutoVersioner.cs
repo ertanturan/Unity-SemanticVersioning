@@ -3,10 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Text))]
 [ExecuteInEditMode]
 public class AutoVersioner : MonoBehaviour
 {
-    [SerializeField] private Text _versionText;
+    private Text _versionText;
 
     public Text VersionText
     {
@@ -39,6 +40,7 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
 
         _versionData.SetMajorUpdate();
+        SetVersionText();
     }
 
     public void SetMinorUpdate()
@@ -46,6 +48,7 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
 
         _versionData.SetMinorUpdate();
+        SetVersionText();
     }
 
     public void SetPatchUpdate()
@@ -53,6 +56,7 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
 
         _versionData.SetPatchUpdate();
+        SetVersionText();
     }
 
     public void SetPrerelease()
@@ -60,12 +64,14 @@ public class AutoVersioner : MonoBehaviour
         GetVersioner();
 
         _versionData.SetPrerelease(_releaseType);
+        SetVersionText();
     }
 
     public void SetBuild()
     {
         GetVersioner();
         _versionData.SetBuild();
+        SetVersionText();
     }
 
     public void GetVersioner()
@@ -100,4 +106,10 @@ public class AutoVersioner : MonoBehaviour
         _versionText = GetComponent<Text>();
     }
 #endif
+
+    public void ResetVersionData()
+    {
+        _versionData.ResetScriptableObject();
+        SetVersionText();
+    }
 }
