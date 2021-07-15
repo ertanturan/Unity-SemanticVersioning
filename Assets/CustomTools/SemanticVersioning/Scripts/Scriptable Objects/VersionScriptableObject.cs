@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using CustomTools.SemanticVersioning.Scripts.Enum;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,35 +11,43 @@ public class VersionScriptableObject : ScriptableObject
 {
     #region Fields And Properties
 
-    [SerializeField] private int _major;
+    [SerializeField] private VersionData _versionData;
 
     public int Major
     {
-        get => _major;
+        get => _versionData.Major;
+        set => _versionData.Major = value;
     }
 
-    [SerializeField] private int _minor;
 
 
     public int Minor
     {
-        get => _minor;
+        get => _versionData.Minor;
+        set => _versionData.Minor = value;
+
     }
 
-    [SerializeField] private int _patch;
 
     public int Patch
     {
-        get => _patch;
+        get => _versionData.Patch;
+        set => _versionData.Patch = value;
     }
 
-    [SerializeField] private ReleaseType _prerelease;
 
-    public ReleaseType Prerelease => _prerelease;
+    public ReleaseType Prerelease
+    {
+        get => _versionData.PreRelease;
+        set => _versionData.PreRelease = value;
+    }
 
-    [SerializeField] private int _build;
 
-    public int Build => _build;
+    public int Build
+    {
+        get => _versionData.Build;
+        set => _versionData.Build = value;
+    }
 
     #endregion
 
@@ -45,43 +55,44 @@ public class VersionScriptableObject : ScriptableObject
 
     public void SetMajorUpdate()
     {
-        _major++;
-        _minor = 0;
-        _build = 0;
-        _patch = 0;
+        _versionData.Major++;
+        _versionData.Minor = 0;
+        _versionData.Build = 0;
+        _versionData.Patch = 0;
+        
     }
 
     public void SetMinorUpdate()
     {
-        _minor++;
-        _build = 0;
-        _patch = 0;
+        _versionData.Minor++;
+        _versionData.Build = 0;
+        _versionData.Patch = 0;
     }
 
     public void SetPatchUpdate()
     {
-        _patch++;
-        _build = 0;
+        _versionData.Patch++;
+        _versionData.Build = 0;
     }
 
     public void SetPrerelease(ReleaseType type)
     {
-        _prerelease = type;
+        _versionData.PreRelease = type;
     }
 
     public void SetBuild()
     {
-        _build++;
+        _versionData.Build++;
     }
 
 
     public void ResetScriptableObject()
     {
-        _major = 0;
-        _minor = 0;
-        _build = 0;
-        _patch = 0;
-        _prerelease = ReleaseType.None;
+        _versionData.Major = 0;
+        _versionData.Minor = 0;
+        _versionData.Build = 0;
+        _versionData.Patch = 0;
+        _versionData.PreRelease = ReleaseType.None;
     }
 
     #endregion

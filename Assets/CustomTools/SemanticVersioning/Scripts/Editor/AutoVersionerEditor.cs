@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using CustomTools.SemanticVersioning.Scripts.Enum;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
