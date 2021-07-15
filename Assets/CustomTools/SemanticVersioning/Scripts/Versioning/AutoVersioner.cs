@@ -35,6 +35,8 @@ public class AutoVersioner : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_EDITOR
+
         GetVersioner();
         _versionData.SetBuild();
 
@@ -44,8 +46,14 @@ public class AutoVersioner : MonoBehaviour
         }
 
         SetVersionText();
-
-#if UNITY_EDITOR
+        //
+        // VersionData version = new VersionData(0,1,1,ReleaseType.None,10);
+        //
+        // VersionData secondVersion = new VersionData(1,1,1,ReleaseType.None,10);
+        //
+        //
+        // Debug.Log(version.IsOlder(secondVersion));
+        
         if (PrefabUtility.IsAnyPrefabInstanceRoot(gameObject))
         {
             PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.AutomatedAction);
