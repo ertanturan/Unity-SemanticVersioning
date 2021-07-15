@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using CustomTools.SemanticVersioning.Scripts.Enum;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;

@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.0.0.0
+  m_Text: 5.4.5.13Alpha
 --- !u!114 &2817836809752097656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,4 +91,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394255567f9edf448aca80e49e1f37ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _releaseType: 0
+  _releaseType: 4
